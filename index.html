@@ -1,0 +1,67 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Assistant</title>
+</head>
+<body>
+    <h1>Shopping Assistant</h1>
+    <input type="text" id="userInput" placeholder="Enter your query here">
+    <button onclick="findDeals()">Find Deals</button>
+    <button onclick="getVoiceInput()">Voice Input</button>
+    <div id="results"></div>
+
+    <script>
+        async function findDeals() {
+            const input = document.getElementById('userInput').value;
+            const response = await fetch('/find_deals', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input })
+            });
+            const deals = await response.json();
+            displayResults(deals);
+        }
+
+        function displayResults(deals) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            deals.forEach(deal => {
+                resultsDiv.innerHTML += `<p>${deal.title} - ${deal.price} <a href=" ">Link</a ></p >`;
+            });
+        }
+
+//        async function getVoiceInput() {
+//            // Here you would implement the voice input functionality
+//            // You can use the Web Speech API for voice recognition in the browser
+//        }
+
+	 async function getVoiceInput() {
+        	const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        	recognition.lang = 'en-US';
+        	recognition.interimResults = false;
+
+        	recognition.onstart = function() {
+            	console.log("Voice recognition started. Speak now...");
+        	};
+
+        	recognition.onresult = function(event) {
+            	const transcript = event.results[0][0].transcript;
+            	document.getElementById('userInput').value = transcript;
+            	findDeals(); // Automatically find deals after voice input
+        	};
+
+        	recognition.onerror = function(event) {
+            	console.error("Error occurred in recognition: " + event.error);
+        	};
+
+        	recognition.start();
+    	}
+
+    </script>
+</body>
+</html>
