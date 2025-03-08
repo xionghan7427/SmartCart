@@ -1,6 +1,6 @@
 The goal of this project is to create a Shopping AI Agent which can automate online shopping:
 1) Base on customer's descriptions, search for qualified items to purchase
-2) To able to find, compare and recommend deals
+2) Be able to find, compare and recommend deals
 3) Have a secured way to store customer preferences and finanical information
 4) The AI Agent should be able to finish a transaction with or without user interference
 5) User can also choose to overview the shopping process
