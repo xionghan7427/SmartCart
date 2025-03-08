@@ -7,7 +7,7 @@ The goal of this project is to create a Shopping AI Agent which can automate onl
 6) This currently have a simple setup with a Webpage and Mobile app frontend interfaces
 
 To do list:
-1) Implement a chatbox type of frontend with voice input capability
+1) Implement a chatbox type of frontend (like Amazon Alexa) with voice input capability
 2) Use Reinforcement Learning to create an AI Agent which can surf online like a human (Don't need specific website API's) and do auto shopping 
 
  
